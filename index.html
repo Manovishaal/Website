@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MANOVISHAAL D — Game Developer & Engineer</title>
+  <meta name="description" content="Manovishaal D — Game Developer (Unreal Engine 5, Unity, Godot), Full-Stack Engineer, Android & VR Developer based in Coimbatore, India." />
+  <meta name="keywords" content="Manovishaal, Game Developer, Unreal Engine 5, Unity, Android, VR, Full Stack, Portfolio, Coimbatore" />
+  <meta property="og:title" content="MANOVISHAAL D — Game Developer & Engineer" />
+  <meta property="og:description" content="Portfolio of Manovishaal D — Game Developer, Full-Stack Engineer, Android & VR Developer." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Scanlines & CRT Retro Overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- Canvas Background -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav class="hud-nav" id="hud-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">MANOVISHAAL<span class="logo-slash"> //</span> STUDIO</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <div class="nav-status" aria-live="polite">
+        <span class="status-dot"></span>
+        <span class="status-text">ONLINE • READY</span>
+      </div>
+      <ul class="nav-links" role="list">
+        <li><a href="#about" class="nav-link" data-section="about">ABOUT</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">PROJECTS</a></li>
+        <li><a href="#skills" class="nav-link" data-section="skills">ARSENAL</a></li>
+        <li><a href="#experience" class="nav-link" data-section="experience">MISSIONS</a></li>
+        <li><a href="#certifications" class="nav-link" data-section="certifications">CREDS</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle Theme">
+          <span class="theme-icon" id="theme-icon">☀</span>
+        </button>
+        <button class="audio-toggle" id="audio-toggle" aria-label="Toggle audio effects" title="Toggle Sound FX">
+          <span class="audio-icon" id="audio-icon">♪</span>
+        </button>
+        <a href="#contact" class="btn-cta-nav">CONNECT</a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#about" class="mob-link">ABOUT</a></li>
+        <li><a href="#projects" class="mob-link">PROJECTS</a></li>
+        <li><a href="#skills" class="mob-link">ARSENAL</a></li>
+        <li><a href="#experience" class="mob-link">MISSIONS</a></li>
+        <li><a href="#certifications" class="mob-link">CREDENTIALS</a></li>
+        <li><a href="#contact" class="mob-link">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero-stage" id="hero" aria-label="Hero introduction">
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="tag-bracket">//</span>
+          <span class="tag-text">DEVELOPER PROFILE • v2025.1</span>
+          <span class="tag-bracket">//</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">
+          <span class="title-line-1 glitch" data-text="MANO">MANO</span>
+          <span class="title-line-2 accent-cyan glitch-cyan" data-text="VISHAAL">VISHAAL</span>
+        </h1>
+        <p class="hero-subtitle">
+          <span class="role-prefix">ENGINE: </span>
+          <span class="role-rotator" id="role-rotator" aria-live="polite">GAME DEVELOPER</span>
+        </p>
+        <p class="hero-descriptor">
+          Architecting immersive digital realities — from next-gen game environments<br class="br-desktop"/>
+          to cross-platform mobile ecosystems and intelligent data pipelines.
+        </p>
+        <div class="hero-badges" aria-label="Core skills">
+          <span class="engine-badge">⬡ UNREAL ENGINE 5</span>
+          <span class="engine-badge">⬡ ANDROID + VR</span>
+          <span class="engine-badge">⬡ FULL-STACK</span>
+          <span class="engine-badge">⬡ ML & DATA</span>
+        </div>
+        <div class="hero-telemetry" aria-label="Statistics">
+          <div class="tele-stat">
+            <span class="tele-val" data-target="4">0</span>
+            <span class="tele-label">ENGINE<br/>MASTERY</span>
+          </div>
+          <div class="tele-divider" aria-hidden="true">|</div>
+          <div class="tele-stat">
+            <span class="tele-val" data-target="10">0</span><span class="tele-plus">+</span>
+            <span class="tele-label">PROJECTS<br/>SHIPPED</span>
+          </div>
+          <div class="tele-divider" aria-hidden="true">|</div>
+          <div class="tele-stat">
+            <span class="tele-val" data-target="5">0</span>
+            <span class="tele-label">CERTS<br/>VERIFIED</span>
+          </div>
+          <div class="tele-divider" aria-hidden="true">|</div>
+          <div class="tele-stat">
+            <span class="tele-val" data-target="3">0</span>
+            <span class="tele-label">YEARS<br/>BUILDING</span>
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">EXPLORE VAULT</a>
+          <a href="#contact" class="btn-secondary">TRANSMIT MESSAGE</a>
+          <button class="btn-arcade-hero" onclick="openDecimaDefender()" title="Play DECIMA DEFENDER arcade game">🕹 PLAY MINI-GAME</button>
+        </div>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about-section" id="about" aria-label="About me">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 01</span>
+          <h2 class="section-title">STUDIO BRIEFING</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="about-lead">
+              I'm <strong>Manovishaal D</strong>, a Computer Science Engineer based in <strong>Coimbatore, Tamil Nadu</strong> — driven by a relentless passion for building experiences that push technological boundaries.
+            </p>
+            <p class="about-body">
+              My core expertise spans <strong>game development</strong> across Unreal Engine 5, Unity, and Godot — crafting photorealistic environments with Nanite/Lumen, complex gameplay systems, and physics-driven mechanics. Alongside game dev, I architect <strong>cross-platform Android ecosystems</strong> (Phone, WearOS, TV, Chromebook), build <strong>full-stack web applications</strong>, and deploy <strong>machine learning and data analytics pipelines</strong>.
+            </p>
+            <p class="about-body">
+              During my internship at <strong>Xyclonic</strong>, I shipped production-grade web solutions across modern frameworks. I am a B.E. Computer Science graduate (2021–2025) from <strong>KPR Institute of Engineering and Technology</strong> with a consistent track record of delivery.
+            </p>
+            <div class="about-location">
+              <span class="loc-icon">◉</span>
+              <span class="loc-text">Coimbatore, Tamil Nadu, India</span>
+              <span class="loc-coords">// 11.0168° N, 76.9558° E</span>
+            </div>
+          </div>
+          <div class="about-stats-panel glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="panel-corner bl" aria-hidden="true"></div>
+            <div class="panel-corner br" aria-hidden="true"></div>
+            <h3 class="panel-title">SYSTEM PROFILE</h3>
+            <div class="stat-row">
+              <span class="stat-key">CODENAME</span>
+              <span class="stat-val accent-cyan">MANOVISHAAL D</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">CLASS</span>
+              <span class="stat-val">Game Dev + Full-Stack Eng.</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">DEGREE</span>
+              <span class="stat-val">B.E. Computer Science</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">INSTITUTE</span>
+              <span class="stat-val">KPR Institute of Eng. & Tech.</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">GRADUATION</span>
+              <span class="stat-val accent-ember">2025</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">CGPA</span>
+              <span class="stat-val">6.8 / 10.0</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">STATUS</span>
+              <span class="stat-val accent-cyan">● AVAILABLE FOR HIRE</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-key">LOCATION</span>
+              <span class="stat-val">Coimbatore, TN, India</span>
+            </div>
+            <a href="#contact" class="btn-primary btn-sm mt-auto">RECRUIT</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects-section" id="projects" aria-label="Projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 02</span>
+          <h2 class="section-title">TITLES VAULT</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <!-- Filter Bar -->
+        <div class="filter-bar" role="tablist" aria-label="Project categories">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">ALL</button>
+          <button class="filter-btn" data-filter="game" role="tab" aria-selected="false">GAME &amp; VR</button>
+          <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false">MOBILE</button>
+          <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">WEB</button>
+          <button class="filter-btn" data-filter="data" role="tab" aria-selected="false">DATA &amp; ML</button>
+        </div>
+        <!-- Project Grid -->
+        <div class="projects-grid" id="projects-grid">
+
+          <!-- Project 1 -->
+          <article class="project-card glass-panel" data-category="game" tabindex="0" role="button" aria-label="View Apex Horizons project details"
+            data-modal="proj-apex"
+            data-title="APEX HORIZONS"
+            data-tech="Unreal Engine 5 · Nanite · Lumen · C++ · Blueprints"
+            data-tag="GAME &amp; VR"
+            data-desc="A next-gen virtual production environment built in Unreal Engine 5 showcasing advanced Nanite virtualized geometry for ultra-high polygon terrain meshes, Lumen global illumination for photorealistic dynamic lighting, and C++ game systems with Blueprint visual scripting. The world features procedurally generated vegetation, particle weather systems, and a prototype exploration mechanic."
+            data-highlights='["Full Nanite & Lumen pipeline integration","C++ Actor components + Blueprint communication","Procedural terrain & foliage generation","Dynamic weather particle system","Custom post-process material stack"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon game-icon">◈</div>
+              <span class="card-tag tag-game">GAME &amp; VR</span>
+            </div>
+            <div class="card-gradient game-grad" aria-hidden="true"></div>
+            <h3 class="card-title">APEX HORIZONS</h3>
+            <p class="card-desc">Next-gen UE5 virtual production environment with Nanite, Lumen & C++ gameplay systems.</p>
+            <div class="card-tech">
+              <span class="tech-pill">UE5</span>
+              <span class="tech-pill">Nanite</span>
+              <span class="tech-pill">Lumen</span>
+              <span class="tech-pill">C++</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card glass-panel" data-category="mobile" tabindex="0" role="button" aria-label="View OmniSphere project details"
+            data-title="OMNISPHERE"
+            data-tech="Android Studio · Kotlin · WearOS · Android TV · Chromebook"
+            data-tag="MOBILE"
+            data-desc="A cross-platform Android ecosystem application designed for seamless experience across Phone, WearOS Smartwatch, Android TV, and Chromebook. Features include real-time data sync via Firebase Realtime Database, adaptive Material 3 UI for each form factor, biometric authentication, background service with WorkManager, and a custom hardware sensor dashboard."
+            data-highlights='["Phone + WearOS + TV + Chromebook builds","Material 3 adaptive design per form factor","Firebase Realtime sync + biometric auth","WorkManager background services","Custom sensor dashboard with accelerometer data"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon mobile-icon">◉</div>
+              <span class="card-tag tag-mobile">MOBILE</span>
+            </div>
+            <div class="card-gradient mobile-grad" aria-hidden="true"></div>
+            <h3 class="card-title">OMNISPHERE</h3>
+            <p class="card-desc">Full Android ecosystem spanning Phone, WearOS, TV & Chromebook with Firebase sync.</p>
+            <div class="card-tech">
+              <span class="tech-pill">Kotlin</span>
+              <span class="tech-pill">WearOS</span>
+              <span class="tech-pill">Firebase</span>
+              <span class="tech-pill">Material 3</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card glass-panel" data-category="web" tabindex="0" role="button" aria-label="View Xyclonic Portal project details"
+            data-title="XYCLONIC PORTAL"
+            data-tech="HTML5 · CSS3 · JavaScript · PHP · MySQL · CMS"
+            data-tag="WEB"
+            data-desc="Enterprise-grade client web portal built during internship at Xyclonic. Delivered production-ready responsive websites, landing pages, and admin dashboards using modern HTML5/CSS3/JS. Integrated PHP backend with MySQL database management and a custom CMS for non-technical content management. Optimized for Core Web Vitals performance."
+            data-highlights='["Responsive HTML5/CSS3/JS client websites","PHP backend + MySQL database integration","Custom CMS content management system","Core Web Vitals performance optimization","Cross-browser & mobile compatibility"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon web-icon">⬡</div>
+              <span class="card-tag tag-web">WEB</span>
+            </div>
+            <div class="card-gradient web-grad" aria-hidden="true"></div>
+            <h3 class="card-title">XYCLONIC PORTAL</h3>
+            <p class="card-desc">Production web solutions shipped during internship — responsive sites, PHP backends & CMS.</p>
+            <div class="card-tech">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">PHP</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card glass-panel" data-category="game" tabindex="0" role="button" aria-label="View Indie Core project details"
+            data-title="INDIE CORE"
+            data-tech="Unity · C# · Godot · GDScript · Physics Engine"
+            data-tag="GAME &amp; VR"
+            data-desc="A collection of indie game prototypes and mechanics built across Unity (C#) and Godot (GDScript). Explores advanced physics simulations, procedural level generation, custom character controllers, AI pathfinding using NavMesh, inventory management systems, and modular game architecture design patterns for rapid prototyping."
+            data-highlights='["Unity C# + Godot GDScript multi-engine mastery","Custom character controller & camera rig","AI enemy pathfinding with NavMesh","Procedural level & dungeon generation","Inventory, save/load & quest management systems"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon game-icon">◈</div>
+              <span class="card-tag tag-game">GAME &amp; VR</span>
+            </div>
+            <div class="card-gradient game-grad" aria-hidden="true"></div>
+            <h3 class="card-title">INDIE CORE</h3>
+            <p class="card-desc">Unity & Godot prototype library — physics, AI, procedural gen & advanced game systems.</p>
+            <div class="card-tech">
+              <span class="tech-pill">Unity</span>
+              <span class="tech-pill">C#</span>
+              <span class="tech-pill">Godot</span>
+              <span class="tech-pill">GDScript</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card glass-panel" data-category="data" tabindex="0" role="button" aria-label="View Neural Engine project details"
+            data-title="NEURAL ENGINE"
+            data-tech="Python · SQL · Pandas · Scikit-learn · Power BI · Kaggle"
+            data-tag="DATA &amp; ML"
+            data-desc="An end-to-end data analytics and machine learning platform encompassing data wrangling with Pandas, SQL query optimization, statistical analysis, and ML model training with Scikit-learn. Features interactive Power BI dashboards, Excel data pipelines, and Kaggle competition entries targeting real-world classification and regression challenges."
+            data-highlights='["Python Pandas data wrangling & EDA","Scikit-learn ML model training & evaluation","SQL query optimization & database design","Power BI interactive dashboard design","Kaggle competition workflows"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon data-icon">◆</div>
+              <span class="card-tag tag-data">DATA &amp; ML</span>
+            </div>
+            <div class="card-gradient data-grad" aria-hidden="true"></div>
+            <h3 class="card-title">NEURAL ENGINE</h3>
+            <p class="card-desc">Python ML pipelines, SQL analytics, Power BI dashboards & Kaggle competition solutions.</p>
+            <div class="card-tech">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">SQL</span>
+              <span class="tech-pill">Scikit-learn</span>
+              <span class="tech-pill">Power BI</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card glass-panel" data-category="mobile" tabindex="0" role="button" aria-label="View VR Nexus project details"
+            data-title="VR NEXUS"
+            data-tech="Android Studio · OpenXR · Cardboard SDK · Spatial Audio"
+            data-tag="MOBILE"
+            data-desc="A mobile VR experience suite targeting Google Cardboard and standalone VR headsets. Implemented 360° spatial scene rendering, OpenXR motion controller integration, spatial audio mixing, and interactive gaze-based UI systems. Optimized for low-latency rendering critical for VR comfort and motion sickness prevention."
+            data-highlights='["OpenXR motion controller integration","Google Cardboard & standalone VR support","360° scene rendering pipeline","Spatial audio 3D mixing","Gaze-based interactive UI system"]'>
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon mobile-icon">◉</div>
+              <span class="card-tag tag-mobile">MOBILE</span>
+            </div>
+            <div class="card-gradient mobile-grad" aria-hidden="true"></div>
+            <h3 class="card-title">VR NEXUS</h3>
+            <p class="card-desc">Mobile VR experience with OpenXR, 360° spatial rendering & gaze-based UI for Android.</p>
+            <div class="card-tech">
+              <span class="tech-pill">Android</span>
+              <span class="tech-pill">OpenXR</span>
+              <span class="tech-pill">Cardboard SDK</span>
+              <span class="tech-pill">Spatial Audio</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills-section" id="skills" aria-label="Skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 03</span>
+          <h2 class="section-title">ARSENAL MATRIX</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-category glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="skill-cat-title"><span class="cat-icon">◈</span> GAME ENGINES</h3>
+            <div class="skill-bars">
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Unreal Engine 5</span><span class="skill-pct">90%</span></div>
+                <div class="skill-bar"><div class="skill-fill game-fill" data-width="90" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Unity</span><span class="skill-pct">85%</span></div>
+                <div class="skill-bar"><div class="skill-fill game-fill" data-width="85" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Godot 4</span><span class="skill-pct">78%</span></div>
+                <div class="skill-bar"><div class="skill-fill game-fill" data-width="78" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Blender (3D)</span><span class="skill-pct">72%</span></div>
+                <div class="skill-bar"><div class="skill-fill game-fill" data-width="72" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="skill-cat-title"><span class="cat-icon">◉</span> MOBILE & VR</h3>
+            <div class="skill-bars">
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Android Studio / Kotlin</span><span class="skill-pct">88%</span></div>
+                <div class="skill-bar"><div class="skill-fill mobile-fill" data-width="88" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">WearOS / Android TV</span><span class="skill-pct">80%</span></div>
+                <div class="skill-bar"><div class="skill-fill mobile-fill" data-width="80" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">OpenXR / VR Dev</span><span class="skill-pct">75%</span></div>
+                <div class="skill-bar"><div class="skill-fill mobile-fill" data-width="75" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Firebase Suite</span><span class="skill-pct">82%</span></div>
+                <div class="skill-bar"><div class="skill-fill mobile-fill" data-width="82" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="skill-cat-title"><span class="cat-icon">⬡</span> WEB & LANGUAGES</h3>
+            <div class="skill-bars">
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">HTML5 / CSS3 / JS</span><span class="skill-pct">88%</span></div>
+                <div class="skill-bar"><div class="skill-fill web-fill" data-width="88" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">C++ / C#</span><span class="skill-pct">85%</span></div>
+                <div class="skill-bar"><div class="skill-fill web-fill" data-width="85" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
+                <div class="skill-bar"><div class="skill-fill web-fill" data-width="80" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">PHP / MySQL</span><span class="skill-pct">75%</span></div>
+                <div class="skill-bar"><div class="skill-fill web-fill" data-width="75" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="skill-cat-title"><span class="cat-icon">◆</span> DATA & ML</h3>
+            <div class="skill-bars">
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">SQL / Database Design</span><span class="skill-pct">85%</span></div>
+                <div class="skill-bar"><div class="skill-fill data-fill" data-width="85" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Pandas / NumPy</span><span class="skill-pct">78%</span></div>
+                <div class="skill-bar"><div class="skill-fill data-fill" data-width="78" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Power BI / Excel</span><span class="skill-pct">80%</span></div>
+                <div class="skill-bar"><div class="skill-fill data-fill" data-width="80" style="width:0%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info"><span class="skill-name">Scikit-learn / ML</span><span class="skill-pct">72%</span></div>
+                <div class="skill-bar"><div class="skill-fill data-fill" data-width="72" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tech Badge Cloud -->
+        <div class="tech-cloud" aria-label="Technologies">
+          <span class="tech-badge">Unreal Engine 5</span>
+          <span class="tech-badge">Unity</span>
+          <span class="tech-badge">Godot</span>
+          <span class="tech-badge">Blender</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">C#</span>
+          <span class="tech-badge">GDScript</span>
+          <span class="tech-badge">Blueprints</span>
+          <span class="tech-badge">Android Studio</span>
+          <span class="tech-badge">Kotlin</span>
+          <span class="tech-badge">WearOS</span>
+          <span class="tech-badge">Android TV</span>
+          <span class="tech-badge">Chromebook</span>
+          <span class="tech-badge">OpenXR</span>
+          <span class="tech-badge">Firebase</span>
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">PHP</span>
+          <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">SQL</span>
+          <span class="tech-badge">Pandas</span>
+          <span class="tech-badge">Scikit-learn</span>
+          <span class="tech-badge">Power BI</span>
+          <span class="tech-badge">Excel</span>
+          <span class="tech-badge">Git</span>
+          <span class="tech-badge">VS Code</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE & EDUCATION ============ -->
+    <section class="section experience-section" id="experience" aria-label="Experience and Education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 04</span>
+          <h2 class="section-title">MISSION LOGS</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="timeline">
+
+          <!-- Experience -->
+          <div class="timeline-group">
+            <h3 class="timeline-group-title">DEPLOYMENTS (EXPERIENCE)</h3>
+            <div class="timeline-item tl-right glass-panel" data-aos>
+              <div class="panel-corner tl" aria-hidden="true"></div>
+              <div class="panel-corner tr" aria-hidden="true"></div>
+              <div class="tl-marker" aria-hidden="true"><span>⬡</span></div>
+              <div class="tl-content">
+                <div class="tl-header">
+                  <div>
+                    <h4 class="tl-title">Web Developer Intern</h4>
+                    <p class="tl-company accent-cyan">Xyclonic</p>
+                  </div>
+                  <span class="tl-date">Jan 2023 — Jun 2023</span>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Developed responsive production-grade client websites using HTML5, CSS3, and JavaScript.</li>
+                  <li>Built PHP backends with MySQL database integration and custom CMS solutions.</li>
+                  <li>Optimized website performance for Core Web Vitals (LCP, FID, CLS) across client portfolio.</li>
+                  <li>Collaborated in agile team delivering projects on schedule with cross-browser compatibility.</li>
+                </ul>
+                <div class="tl-tags">
+                  <span class="tech-pill">HTML5</span>
+                  <span class="tech-pill">CSS3</span>
+                  <span class="tech-pill">JavaScript</span>
+                  <span class="tech-pill">PHP</span>
+                  <span class="tech-pill">MySQL</span>
+                  <span class="tech-pill">CMS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="timeline-group">
+            <h3 class="timeline-group-title">ACADEMY (EDUCATION)</h3>
+
+            <div class="timeline-item tl-right glass-panel" data-aos>
+              <div class="panel-corner tl" aria-hidden="true"></div>
+              <div class="panel-corner tr" aria-hidden="true"></div>
+              <div class="tl-marker" aria-hidden="true"><span>◈</span></div>
+              <div class="tl-content">
+                <div class="tl-header">
+                  <div>
+                    <h4 class="tl-title">B.E. Computer Science & Engineering</h4>
+                    <p class="tl-company accent-cyan">KPR Institute of Engineering and Technology</p>
+                  </div>
+                  <span class="tl-date">2021 — 2025</span>
+                </div>
+                <p class="tl-desc">Specialization in Software Engineering with focus on Game Development, Mobile Platforms, and Data Systems. Active member of the college Game Dev club and Machine Learning research group.</p>
+                <div class="tl-tags">
+                  <span class="tl-stat-pill">CGPA: <strong>6.8 / 10.0</strong></span>
+                  <span class="tech-pill">CSE</span>
+                  <span class="tech-pill">Game Dev</span>
+                  <span class="tech-pill">ML</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item tl-right glass-panel" data-aos>
+              <div class="panel-corner tl" aria-hidden="true"></div>
+              <div class="panel-corner tr" aria-hidden="true"></div>
+              <div class="tl-marker" aria-hidden="true"><span>◉</span></div>
+              <div class="tl-content">
+                <div class="tl-header">
+                  <div>
+                    <h4 class="tl-title">Higher Secondary Certificate (HSC)</h4>
+                    <p class="tl-company accent-ember">Sri Chaitanya Techno School</p>
+                  </div>
+                  <span class="tl-date">2020 — 2021</span>
+                </div>
+                <p class="tl-desc">Computer Science stream with strong foundation in Mathematics, Physics, and Programming fundamentals.</p>
+                <div class="tl-tags">
+                  <span class="tech-pill">Computer Science</span>
+                  <span class="tech-pill">Mathematics</span>
+                  <span class="tech-pill">Physics</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item tl-right glass-panel" data-aos>
+              <div class="panel-corner tl" aria-hidden="true"></div>
+              <div class="panel-corner tr" aria-hidden="true"></div>
+              <div class="tl-marker" aria-hidden="true"><span>◆</span></div>
+              <div class="tl-content">
+                <div class="tl-header">
+                  <div>
+                    <h4 class="tl-title">SSLC (10th Standard)</h4>
+                    <p class="tl-company accent-ember">National Model School</p>
+                  </div>
+                  <span class="tl-date">2018 — 2019</span>
+                </div>
+                <p class="tl-desc">Foundation in core academic subjects with early introduction to computing concepts and logical problem-solving.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section class="section certs-section" id="certifications" aria-label="Certifications">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 05</span>
+          <h2 class="section-title">VERIFIED CREDENTIALS</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="certs-grid">
+
+          <div class="cert-card glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="cert-icon game-icon">◈</div>
+            <div class="cert-verified" aria-label="Verified">✓ VERIFIED</div>
+            <h3 class="cert-title">Unreal Engine 5</h3>
+            <p class="cert-issuer">Epic Games / Udemy</p>
+            <p class="cert-desc">Mastery of UE5 core systems — Blueprints, C++, Nanite, Lumen, Niagara VFX, animations, and game mechanics development.</p>
+            <div class="cert-skills">
+              <span class="cert-skill-tag">UE5</span>
+              <span class="cert-skill-tag">C++</span>
+              <span class="cert-skill-tag">Blueprints</span>
+              <span class="cert-skill-tag">Nanite/Lumen</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="cert-icon game-icon">◈</div>
+            <div class="cert-verified" aria-label="Verified">✓ VERIFIED</div>
+            <h3 class="cert-title">Terrain & Environment Art</h3>
+            <p class="cert-issuer">Udemy / Epic Games</p>
+            <p class="cert-desc">Advanced terrain modeling and sculpting, procedural landscape materials, vegetation scattering, and environment art optimization pipelines for UE5.</p>
+            <div class="cert-skills">
+              <span class="cert-skill-tag">Terrain</span>
+              <span class="cert-skill-tag">Materials</span>
+              <span class="cert-skill-tag">Foliage</span>
+              <span class="cert-skill-tag">Optimization</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="cert-icon data-icon">◆</div>
+            <div class="cert-verified" aria-label="Verified">✓ VERIFIED</div>
+            <h3 class="cert-title">SQL & Database Management</h3>
+            <p class="cert-issuer">Coursera / Google</p>
+            <p class="cert-desc">Comprehensive SQL query writing, complex joins, subqueries, stored procedures, database design with normalization, and performance optimization.</p>
+            <div class="cert-skills">
+              <span class="cert-skill-tag">SQL</span>
+              <span class="cert-skill-tag">MySQL</span>
+              <span class="cert-skill-tag">Database Design</span>
+              <span class="cert-skill-tag">Optimization</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="cert-icon data-icon">◆</div>
+            <div class="cert-verified" aria-label="Verified">✓ VERIFIED</div>
+            <h3 class="cert-title">Excel & Data Analytics</h3>
+            <p class="cert-issuer">Microsoft / Coursera</p>
+            <p class="cert-desc">Advanced Excel for data analysis — Pivot Tables, VLOOKUP, Power Query, data visualization, and business intelligence reporting workflows.</p>
+            <div class="cert-skills">
+              <span class="cert-skill-tag">Excel</span>
+              <span class="cert-skill-tag">Power Query</span>
+              <span class="cert-skill-tag">Pivot Tables</span>
+              <span class="cert-skill-tag">Data Viz</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <div class="cert-icon mobile-icon">◉</div>
+            <div class="cert-verified" aria-label="Verified">✓ VERIFIED</div>
+            <h3 class="cert-title">Android Development</h3>
+            <p class="cert-issuer">Google / Android Studio</p>
+            <p class="cert-desc">Full Android app development with Kotlin, Jetpack Compose, Material Design, lifecycle management, background processing, and Play Store deployment.</p>
+            <div class="cert-skills">
+              <span class="cert-skill-tag">Kotlin</span>
+              <span class="cert-skill-tag">Jetpack</span>
+              <span class="cert-skill-tag">Material 3</span>
+              <span class="cert-skill-tag">WearOS</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact-section" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 06</span>
+          <h2 class="section-title">COMMAND CENTER</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <p class="contact-lead">Open to game development roles, Android / VR positions, full-stack opportunities, and exciting collaborations. Let's build something extraordinary.</p>
+        <div class="contact-grid">
+
+          <div class="contact-info glass-panel">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="contact-info-title">TRANSMISSION CHANNELS</h3>
+
+            <a class="contact-item" href="mailto:manovishaal@gmail.com" id="copy-email" aria-label="Send email to manovishaal@gmail.com">
+              <div class="contact-item-icon">✉</div>
+              <div class="contact-item-detail">
+                <span class="contact-item-label">EMAIL</span>
+                <span class="contact-item-val">manovishaal@gmail.com</span>
+              </div>
+              <button class="copy-btn" aria-label="Copy email address" data-copy="manovishaal@gmail.com">⧉</button>
+            </a>
+
+            <a class="contact-item" href="tel:+919080327359" id="copy-phone" aria-label="Call +91 90803 27359">
+              <div class="contact-item-icon">📡</div>
+              <div class="contact-item-detail">
+                <span class="contact-item-label">SIGNAL</span>
+                <span class="contact-item-val">+91 90803 27359</span>
+              </div>
+              <button class="copy-btn" aria-label="Copy phone number" data-copy="+919080327359">⧉</button>
+            </a>
+
+            <a class="contact-item" href="https://maps.google.com/?q=Coimbatore,Tamil+Nadu,India" target="_blank" rel="noopener noreferrer" aria-label="View Coimbatore on map">
+              <div class="contact-item-icon">◉</div>
+              <div class="contact-item-detail">
+                <span class="contact-item-label">COORDINATES</span>
+                <span class="contact-item-val">Coimbatore, Tamil Nadu, India</span>
+              </div>
+              <span class="contact-item-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="contact-item" href="https://www.linkedin.com/in/manovishaal-dhayalanathan-677936281/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">
+              <div class="contact-item-icon">⬡</div>
+              <div class="contact-item-detail">
+                <span class="contact-item-label">LINKEDIN</span>
+                <span class="contact-item-val">linkedin.com/in/manovishaal</span>
+              </div>
+              <span class="contact-item-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="contact-item" href="https://github.com/manovishaal" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">
+              <div class="contact-item-icon">◈</div>
+              <div class="contact-item-detail">
+                <span class="contact-item-label">GITHUB</span>
+                <span class="contact-item-val">github.com/manovishaal</span>
+              </div>
+              <span class="contact-item-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <form class="contact-form glass-panel" id="contact-form" novalidate aria-label="Contact form">
+            <div class="panel-corner tl" aria-hidden="true"></div>
+            <div class="panel-corner tr" aria-hidden="true"></div>
+            <h3 class="contact-info-title">SEND TRANSMISSION</h3>
+            <div class="form-group">
+              <label for="name" class="form-label">CALLSIGN (Name)</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">CHANNEL (Email)</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">MISSION TYPE (Subject)</label>
+              <select id="subject" name="subject" class="form-input form-select">
+                <option value="">Select Mission Type...</option>
+                <option value="game-dev">Game Development Role</option>
+                <option value="android-vr">Android / VR Position</option>
+                <option value="fullstack">Full-Stack Opportunity</option>
+                <option value="freelance">Freelance Project</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">TRANSMISSION (Message)</label>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="Describe your mission..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="form-submit">SEND TRANSMISSION</button>
+            <p class="form-note" id="form-feedback" aria-live="polite"></p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">MANOVISHAAL <span class="logo-slash">//</span> STUDIO</span>
+        <span class="logo-bracket">]</span>
+      </div>
+      <p class="footer-tagline">Building Digital Realities — One Pixel, One Polygon, One Line of Code at a Time.</p>
+      <div class="footer-links">
+        <a href="#hero">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#skills">ARSENAL</a>
+        <a href="#experience">MISSIONS</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+      <p class="footer-copy">© 2025 Manovishaal D. All systems online. Built with vanilla HTML/CSS/JS.</p>
+      <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲ TOP</button>
+    </div>
+  </footer>
+
+  <!-- ============ PROJECT MODAL ============ -->
+  <dialog class="project-modal" id="project-modal" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-inner glass-panel">
+      <div class="panel-corner tl" aria-hidden="true"></div>
+      <div class="panel-corner tr" aria-hidden="true"></div>
+      <button class="modal-close" id="modal-close" aria-label="Close project details">✕</button>
+      <div class="modal-tag" id="modal-tag">TAG</div>
+      <h2 class="modal-title" id="modal-title">PROJECT TITLE</h2>
+      <p class="modal-tech" id="modal-tech">Tech Stack</p>
+      <p class="modal-desc" id="modal-desc">Description</p>
+      <div class="modal-highlights">
+        <h3 class="modal-hl-title">KEY SYSTEMS</h3>
+        <ul class="modal-hl-list" id="modal-highlights-list"></ul>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ============ GAME MODAL ============ -->
+  <dialog class="game-modal" id="game-modal" aria-label="Decima Defender mini-game">
+    <div class="game-modal-inner">
+      <div class="game-modal-header">
+        <div class="game-modal-title">
+          <span class="game-modal-tag">// ARCADE</span>
+          <span class="game-modal-name">DECIMA DEFENDER</span>
+        </div>
+        <button class="game-modal-close" onclick="closeDecimaDefender()" aria-label="Close game">✕ QUIT</button>
+      </div>
+      <canvas id="game-canvas" class="game-canvas" aria-label="Game canvas"></canvas>
+      <div class="game-controls-bar">
+        <span>← → / A D &nbsp;Move</span>
+        <span>SPACE &nbsp;Fire</span>
+        <span>P / ESC &nbsp;Pause</span>
+        <span class="game-ctrl-mobile">Touch left/right to move</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Floating Arcade Button -->
+  <button class="arcade-btn" id="arcade-btn" onclick="openDecimaDefender()" aria-label="Play Decima Defender mini-game" title="Play DECIMA DEFENDER">
+    <span class="arcade-btn-icon">🕹</span>
+    <span class="arcade-btn-label">ARCADE</span>
+  </button>
+
+  <script src="main.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
