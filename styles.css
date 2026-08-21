@@ -1615,6 +1615,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .modal-inner {
   padding: 40px;
   position: relative;
+  max-height: 88vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-cyan) var(--bg-secondary);
+}
+.modal-inner::-webkit-scrollbar {
+  width: 5px;
+}
+.modal-inner::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 2px;
 }
 .modal-close {
   position: absolute;

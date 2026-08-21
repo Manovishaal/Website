@@ -442,20 +442,9 @@ function closeModal() {
 }
 
 projectCards.forEach(card => {
-  card.addEventListener('click', (e) => {
-    if (card.tagName.toLowerCase() === 'a' || card.dataset.link) {
-      if (card.tagName.toLowerCase() !== 'a') {
-        window.open(card.dataset.link, '_blank', 'noopener,noreferrer');
-      }
-      return;
-    }
-    openModal(card);
-  });
+  card.addEventListener('click', () => openModal(card));
   card.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
-      if (card.tagName.toLowerCase() === 'a' || card.dataset.link) {
-        return;
-      }
       e.preventDefault();
       openModal(card);
     }

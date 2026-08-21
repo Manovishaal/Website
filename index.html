@@ -304,28 +304,33 @@
             </div>
           </article>
 
-          <!-- Project 4: SITARA APT PORTAL (Live Project Link) -->
-          <a href="https://dayalvish.github.io/Sitara-Apt-View/" target="_blank" rel="noopener noreferrer" class="project-card glass-panel" data-category="web" data-link="https://dayalvish.github.io/Sitara-Apt-View/" aria-label="Open Manchester Sitara Apartment Portal live website in a new tab">
+          <!-- Project 4: SITARA APT PORTAL -->
+          <article class="project-card glass-panel" data-category="web" tabindex="0" role="button" aria-label="View Sitara Apt Portal project details"
+            data-title="SITARA APT PORTAL"
+            data-tech="PostgreSQL (RLS) · Supabase Auth · pg_cron &amp; Edge Functions · JavaScript · CSS3"
+            data-tag="COMMUNITY MANAGEMENT PLATFORM"
+            data-link="https://dayalvish.github.io/Sitara-Apt-View/"
+            data-desc="A robust, scalable web application designed to streamline residential society operations. It provides a secure, decoupled portal for administrators to manage billing, and for residents to track their financial dues and community updates in real time."
+            data-highlights='["Secure Authentication: Fully integrated login flow ensuring all users are cryptographically verified before accessing the dashboard.","Dynamic Billing System: Admins can issue global, society-wide payment requests (e.g., Annual Maintenance) or upload a CSV to instantly dispatch customized monthly utility bills (Water, Genset) to individual flats.","Approval Workflow: Residents submit payment references that enter a Pending state. The Admin hub allows the Treasurer to reconcile these with actual bank statements before locking the status to Verified.","Automated Timeline Management: A community noticeboard powered by a backend Edge Function and a pg_cron schedule that automatically purges expired social posts every night at midnight without manual intervention.","Row Level Security (RLS): The PostgreSQL database is locked down at the kernel level. Custom RLS policies dynamically cross-reference the user&#39;s secure authentication token with their assigned FlatNo.","Strict Data Isolation: Residents can only query and view their own financial history. The database mathematically rejects unauthorized client-side API requests, making it impossible to view cross-tenant data.","Protected Tables: By shifting security rules away from the front-end HTML/JS and directly into the database bouncer, the architecture completely neutralizes the risk of malicious client-side scripts altering or deleting financial records."]'>
             <div class="panel-corner tl" aria-hidden="true"></div>
             <div class="panel-corner tr" aria-hidden="true"></div>
             <div class="card-header">
               <div class="card-icon web-icon">⬡</div>
-              <span class="card-tag tag-web">LIVE DEMO ↗</span>
+              <span class="card-tag tag-web">WEB &amp; CLOUD</span>
             </div>
             <div class="card-gradient web-grad" aria-hidden="true"></div>
             <h3 class="card-title">SITARA APT PORTAL</h3>
-            <p class="card-desc">Full-stack apartment ecosystem with Supabase, live parking timers, notices & UPI payment intimations.</p>
+            <p class="card-desc">Decoupled residential society portal — automated billing, RLS data isolation & real-time updates.</p>
             <div class="card-tech">
               <span class="tech-pill">Supabase</span>
-              <span class="tech-pill">PostgreSQL</span>
-              <span class="tech-pill">Real-Time</span>
-              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">PostgreSQL RLS</span>
+              <span class="tech-pill">Edge Functions</span>
+              <span class="tech-pill">pg_cron</span>
             </div>
-            <div class="card-footer card-footer-actions">
-              <span class="card-view card-view-live">VISIT LIVE WEBSITE ↗</span>
-              <span class="card-live-btn">LAUNCH ↗</span>
+            <div class="card-footer">
+              <span class="card-view">VIEW DETAILS &amp; LAUNCH →</span>
             </div>
-          </a>
+          </article>
 
           <!-- Project 5 -->
           <article class="project-card glass-panel" data-category="game" tabindex="0" role="button" aria-label="View Indie Core project details"
