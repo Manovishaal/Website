@@ -406,6 +406,8 @@ const modalTitle = document.getElementById('modal-title');
 const modalTech = document.getElementById('modal-tech');
 const modalDesc = document.getElementById('modal-desc');
 const modalHighlightsList = document.getElementById('modal-highlights-list');
+const modalActions = document.getElementById('modal-actions');
+const modalLiveLink = document.getElementById('modal-live-link');
 
 function openModal(card) {
   modalTag.textContent = card.dataset.tag || '';
@@ -421,6 +423,15 @@ function openModal(card) {
       modalHighlightsList.appendChild(li);
     });
   } catch (_) {}
+
+  // Set live project link if available
+  if (card.dataset.link && modalLiveLink && modalActions) {
+    modalLiveLink.href = card.dataset.link;
+    modalActions.style.display = 'flex';
+  } else if (modalActions) {
+    modalActions.style.display = 'none';
+  }
+
   modal.showModal();
   playModalOpenSound();
 }
@@ -431,8 +442,24 @@ function closeModal() {
 }
 
 projectCards.forEach(card => {
-  card.addEventListener('click', () => openModal(card));
-  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); } });
+  card.addEventListener('click', (e) => {
+    if (card.tagName.toLowerCase() === 'a' || card.dataset.link) {
+      if (card.tagName.toLowerCase() !== 'a') {
+        window.open(card.dataset.link, '_blank', 'noopener,noreferrer');
+      }
+      return;
+    }
+    openModal(card);
+  });
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (card.tagName.toLowerCase() === 'a' || card.dataset.link) {
+        return;
+      }
+      e.preventDefault();
+      openModal(card);
+    }
+  });
   card.addEventListener('mouseenter', playHoverSound);
 });
 

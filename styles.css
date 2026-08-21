@@ -1021,6 +1021,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   gap: 14px;
+  text-decoration: none;
+  color: inherit;
 }
 .project-card:hover {
   transform: translateY(-6px);
@@ -1092,6 +1094,36 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .project-card:hover .tech-pill { color: var(--text-secondary); border-color: var(--border-glow-cyan); }
 .card-footer { border-top: 1px solid var(--border-base); padding-top: 14px; }
+.card-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-live-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bg-void);
+  background: var(--accent-cyan);
+  padding: 4px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  transition: all var(--trans-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-live-btn:hover {
+  background: var(--accent-ember);
+  color: #fff;
+  box-shadow: 0 0 14px var(--accent-ember-glow);
+  transform: translateY(-1px);
+}
+[data-theme="light"] .card-live-btn {
+  background: var(--accent-cyan);
+  color: #fff;
+}
 .card-view {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1651,6 +1683,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: absolute;
   left: 0;
   color: var(--accent-cyan);
+}
+.modal-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-base);
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-live-btn {
+  gap: 8px;
+  padding: 12px 26px;
+  font-size: 11px;
 }
 
 /* ============================================================
