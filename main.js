@@ -140,7 +140,13 @@ function animateCanvas() {
 }
 
 window.addEventListener('resize', () => { resize(); initParticles(); });
-window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+window.addEventListener('touchmove', e => {
+  if (e.touches && e.touches[0]) {
+    mouse.x = e.touches[0].clientX;
+    mouse.y = e.touches[0].clientY;
+  }
+}, { passive: true });
 resize();
 initParticles();
 animateCanvas();
@@ -224,21 +230,52 @@ function updateActiveNavLink() {
 /* Hamburger menu */
 const hamburger = document.getElementById('nav-hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', () => {
-  const open = hamburger.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', open);
-  mobileMenu.classList.toggle('open', open);
-  mobileMenu.setAttribute('aria-hidden', !open);
-  playClickSound();
-});
-document.querySelectorAll('.mob-link').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
-    mobileMenu.classList.remove('open');
-    mobileMenu.setAttribute('aria-hidden', true);
+
+function closeMobileMenu() {
+  if (!hamburger || !mobileMenu) return;
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('menu-open');
+}
+
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.classList.toggle('open', open);
+    mobileMenu.setAttribute('aria-hidden', !open);
+    document.body.classList.toggle('menu-open', open);
+    playClickSound();
   });
-});
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+      playClickSound();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
+}
 
 /* Add sound to all nav links */
 navLinks.forEach(link => {

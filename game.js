@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    DECIMA DEFENDER — Retro Space Shooter
    Portfolio Mini-Game by Manovishaal D
    ============================================================ */
@@ -279,9 +279,15 @@ class DecimaDefender {
     this._ku = (e) => { this.keys.delete(e.code); if (e.code === 'Space') this.shooting = false; };
     this._tc = (e) => {
       e.preventDefault();
-      const t = e.touches[0], r = this.canvas.getBoundingClientRect();
-      this.touchX = (t.clientX - r.left) * (CFG.W / r.width);
-      this.shooting = true;
+      if (this.state === 'IDLE' || this.state === 'GAMEOVER') {
+        this.startGame();
+        return;
+      }
+      if (e.touches && e.touches[0]) {
+        const t = e.touches[0], r = this.canvas.getBoundingClientRect();
+        this.touchX = (t.clientX - r.left) * (CFG.W / r.width);
+        this.shooting = true;
+      }
     };
     this._te = () => { this.touchX = null; this.shooting = false; };
     this._cl = () => {
