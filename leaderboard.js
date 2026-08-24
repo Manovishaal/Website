@@ -20,8 +20,8 @@
    ============================================================ */
 'use strict';
 
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://csqrzruqgqefiacepaow.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzcXJ6cnVxZ3FlZmlhY2VwYW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MDE0MzUsImV4cCI6MjEwMzE3NzQzNX0.eDdfd6yrnirZN_Z4rJiQD67y-1jfxOXZmLs1JMu2GDQ';
 
 const LB_TABLE = 'HighScores';
 const LB_USERNAME_KEY = 'decima-username';
