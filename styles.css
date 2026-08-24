@@ -2713,4 +2713,261 @@ body { animation: crt-flicker 8s infinite; }
   color: var(--text-secondary);
 }
 
+/* ============================================================
+   GLOBAL LEADERBOARD — callsign capture + high score board
+   ============================================================ */
+.game-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.game-callsign-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 2px;
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.game-callsign-label {
+  color: var(--text-muted);
+}
+.game-callsign-name {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+#game-callsign-change {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 0;
+}
+#game-callsign-change:hover {
+  color: var(--accent-cyan);
+}
+
+.game-modal-leaderboard {
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.4);
+  color: var(--accent-gold, #f5c518);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+.game-modal-leaderboard:hover {
+  background: #f5c518;
+  border-color: #f5c518;
+  color: #05060b;
+  box-shadow: 0 0 15px rgba(245, 197, 24, 0.4);
+}
+
+.game-canvas-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(5, 6, 11, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 2px;
+}
+.game-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-overlay-panel {
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+.game-overlay-panel-wide {
+  max-width: 400px;
+}
+.game-overlay-panel h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--accent-cyan);
+  margin: 0 0 10px;
+}
+.game-overlay-panel p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+}
+
+.callsign-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(0, 240, 255, 0.3);
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.callsign-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+}
+
+.callsign-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.callsign-submit {
+  background: var(--accent-cyan);
+  border: none;
+  color: #05060b;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+.callsign-submit:hover {
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+  transform: translateY(-1px);
+}
+.callsign-skip {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  text-decoration: underline;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  cursor: pointer;
+  padding: 4px;
+}
+.callsign-skip:hover {
+  color: var(--text-secondary);
+}
+
+.leaderboard-list {
+  max-height: 260px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.leaderboard-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 20px 0;
+}
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 34px 1fr auto 56px;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.leaderboard-row:nth-child(1) { border-color: rgba(245, 197, 24, 0.5); }
+.leaderboard-row:nth-child(2) { border-color: rgba(0, 240, 255, 0.35); }
+.leaderboard-row:nth-child(3) { border-color: rgba(255, 107, 53, 0.35); }
+.lb-rank {
+  color: var(--accent-ember);
+  font-weight: 700;
+}
+.lb-name {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lb-score {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+.lb-level {
+  color: var(--text-muted);
+  font-size: 10px;
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .game-modal-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .game-modal-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .game-callsign-badge {
+    font-size: 9px;
+  }
+}
+
+[data-theme="light"] .game-overlay {
+  background: rgba(237, 233, 224, 0.92);
+  border-color: rgba(0, 119, 170, 0.3);
+}
+[data-theme="light"] .callsign-input {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 119, 170, 0.35);
+  color: var(--text-primary);
+}
+[data-theme="light"] .leaderboard-row {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .game-callsign-badge {
+  background: rgba(0, 119, 170, 0.06);
+  border-color: rgba(0, 119, 170, 0.3);
+}
+[data-theme="light"] .game-modal-leaderboard {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #b45309;
+}
 

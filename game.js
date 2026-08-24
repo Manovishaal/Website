@@ -445,6 +445,7 @@ class DecimaDefender {
       localStorage.setItem('decima-hi', this.hiScore);
       this.state = 'GAMEOVER';
       sfxGameOver();
+      if (window.LB) window.LB.submitScore(this.score, this.level);
     }
   }
   _collectPU(pu) {
@@ -557,19 +558,125 @@ class DecimaDefender {
 
 /* ---- Launcher ---- */
 let instance = null;
-window.openDecimaDefender = function () {
-  const modal = document.getElementById('game-modal'), canvas = document.getElementById('game-canvas');
+
+function _launchGame() {
+  const canvas = document.getElementById('game-canvas');
   canvas.width = CFG.W; canvas.height = CFG.H;
-  if (!modal.open) modal.showModal();
   if (instance) instance.destroy();
   instance = new DecimaDefender(canvas);
+}
+
+function _escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function _updateCallsignBadge() {
+  const badge = document.getElementById('game-callsign-badge');
+  const nameEl = document.getElementById('game-callsign-name');
+  const name = window.LB ? window.LB.getUsername() : null;
+  if (!badge || !nameEl) return;
+  if (name) { nameEl.textContent = name; badge.style.display = 'inline-flex'; }
+  else { badge.style.display = 'none'; }
+}
+
+function _showCallsignOverlay() {
+  const overlay = document.getElementById('callsign-overlay');
+  const input = document.getElementById('callsign-input');
+  if (!overlay) { _launchGame(); return; }
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  if (input) {
+    input.value = (window.LB && window.LB.getUsername()) || '';
+    setTimeout(() => input.focus(), 50);
+  }
+}
+
+function _hideCallsignOverlay() {
+  const overlay = document.getElementById('callsign-overlay');
+  if (overlay) { overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); }
+}
+
+function _showLeaderboardOverlay() {
+  const overlay = document.getElementById('leaderboard-overlay');
+  const list = document.getElementById('leaderboard-list');
+  if (!overlay || !list) return;
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  list.innerHTML = '<p class="leaderboard-status">Loading...</p>';
+  if (!window.LB) { list.innerHTML = '<p class="leaderboard-status">Leaderboard unavailable.</p>'; return; }
+  window.LB.fetchLeaderboard(10).then(({ data, configured, error }) => {
+    if (!configured) {
+      list.innerHTML = '<p class="leaderboard-status">Global leaderboard isn’t connected yet — see leaderboard.js.</p>';
+      return;
+    }
+    if (error) { list.innerHTML = '<p class="leaderboard-status">Couldn’t load scores right now.</p>'; return; }
+    if (!data.length) { list.innerHTML = '<p class="leaderboard-status">No scores yet — be the first!</p>'; return; }
+    list.innerHTML = data.map((row, i) => `
+      <div class="leaderboard-row">
+        <span class="lb-rank">#${i + 1}</span>
+        <span class="lb-name">${_escapeHtml(row.Username || 'GUEST')}</span>
+        <span class="lb-score">${String(row.Score).padStart(6, '0')}</span>
+        <span class="lb-level">LVL ${row.Level || 1}</span>
+      </div>
+    `).join('');
+  });
+}
+
+function _hideLeaderboardOverlay() {
+  const overlay = document.getElementById('leaderboard-overlay');
+  if (overlay) { overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); }
+}
+
+window.openDecimaDefender = function () {
+  const modal = document.getElementById('game-modal');
+  if (!modal.open) modal.showModal();
+  _updateCallsignBadge();
+  if (window.LB && window.LB.getUsername()) _launchGame();
+  else _showCallsignOverlay();
 };
 
 window.closeDecimaDefender = function () {
   if (instance) { instance.destroy(); instance = null; }
+  _hideCallsignOverlay();
+  _hideLeaderboardOverlay();
   const modal = document.getElementById('game-modal');
   if (modal && modal.open) modal.close();
 };
+
+/* Wire up the callsign capture + global leaderboard UI once, at load time */
+(function _wireLeaderboardUI() {
+  const submitBtn = document.getElementById('callsign-submit');
+  const skipBtn = document.getElementById('callsign-skip');
+  const input = document.getElementById('callsign-input');
+  const changeBtn = document.getElementById('game-callsign-change');
+  const lbBtn = document.getElementById('game-leaderboard-btn');
+  const lbClose = document.getElementById('leaderboard-close');
+
+  function confirmCallsign() {
+    const name = window.LB && window.LB.saveUsername(input ? input.value : '');
+    if (!name) {
+      if (input) { input.placeholder = 'Enter at least 1 character...'; input.focus(); }
+      return;
+    }
+    _updateCallsignBadge();
+    _hideCallsignOverlay();
+    if (!instance) _launchGame();
+  }
+
+  if (submitBtn) submitBtn.addEventListener('click', confirmCallsign);
+  if (input) input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); confirmCallsign(); }
+  });
+  if (skipBtn) skipBtn.addEventListener('click', () => {
+    if (window.LB) window.LB.saveUsername(window.LB.getUsername() || window.LB.randomGuestName());
+    _updateCallsignBadge();
+    _hideCallsignOverlay();
+    if (!instance) _launchGame();
+  });
+  if (changeBtn) changeBtn.addEventListener('click', () => _showCallsignOverlay());
+  if (lbBtn) lbBtn.addEventListener('click', () => _showLeaderboardOverlay());
+  if (lbClose) lbClose.addEventListener('click', () => _hideLeaderboardOverlay());
+})();
 
 /* ---- Konami Code Easter Egg ---- */
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];

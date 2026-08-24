@@ -996,9 +996,43 @@
           <span class="game-modal-tag">// ARCADE</span>
           <span class="game-modal-name">DECIMA DEFENDER</span>
         </div>
-        <button class="game-modal-close" onclick="closeDecimaDefender()" aria-label="Close game">✕ QUIT</button>
+        <div class="game-modal-actions">
+          <span class="game-callsign-badge" id="game-callsign-badge" style="display:none;" aria-live="polite">
+            <span class="game-callsign-label">PILOT</span>
+            <span class="game-callsign-name" id="game-callsign-name"></span>
+            <button type="button" id="game-callsign-change" title="Change callsign">change</button>
+          </span>
+          <button type="button" class="game-modal-leaderboard" id="game-leaderboard-btn" aria-label="View global leaderboard">🏆 LEADERBOARD</button>
+          <button class="game-modal-close" onclick="closeDecimaDefender()" aria-label="Close game">✕ QUIT</button>
+        </div>
       </div>
-      <canvas id="game-canvas" class="game-canvas" aria-label="Game canvas"></canvas>
+      <div class="game-canvas-wrap">
+        <canvas id="game-canvas" class="game-canvas" aria-label="Game canvas"></canvas>
+
+        <!-- Callsign capture — shown before first play, and whenever the pilot chooses "change" -->
+        <div class="game-overlay" id="callsign-overlay" aria-hidden="true">
+          <div class="game-overlay-panel">
+            <h3>ENTER YOUR CALLSIGN</h3>
+            <p>Your name (and score) will appear on the public leaderboard — everyone who plays can see it.</p>
+            <input type="text" id="callsign-input" class="callsign-input" maxlength="16" placeholder="e.g. ACE_PILOT" autocomplete="off" spellcheck="false">
+            <div class="callsign-actions">
+              <button type="button" id="callsign-submit" class="callsign-submit">LOCK IN CALLSIGN</button>
+              <button type="button" id="callsign-skip" class="callsign-skip">Skip — play as GUEST</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global leaderboard, fetched live from Supabase -->
+        <div class="game-overlay" id="leaderboard-overlay" aria-hidden="true">
+          <div class="game-overlay-panel game-overlay-panel-wide">
+            <h3>🏆 GLOBAL LEADERBOARD</h3>
+            <div id="leaderboard-list" class="leaderboard-list">
+              <p class="leaderboard-status">Loading...</p>
+            </div>
+            <button type="button" id="leaderboard-close" class="callsign-submit">CLOSE</button>
+          </div>
+        </div>
+      </div>
       <div class="game-controls-bar">
         <span>← → / A D &nbsp;Move</span>
         <span>SPACE &nbsp;Fire</span>
@@ -1015,7 +1049,9 @@
     <span class="arcade-btn-label">ARCADE</span>
   </button>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="main.js"></script>
+  <script src="leaderboard.js"></script>
   <script src="game.js"></script>
 </body>
 
