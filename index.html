@@ -430,6 +430,7 @@
           <article class="project-card glass-panel" data-category="mobile" tabindex="0" role="button"
             aria-label="View Cato Kids project details" data-title="CATO KIDS"
             data-tech="Kotlin · Jetpack Compose · Supabase (PostgreSQL + RLS) · Gradle" data-tag="EARLY CHILDHOOD LEARNING APP"
+            data-download="https://github.com/Manovishaal/Cato-Kids/releases/download/V1.0/app-debug.apk"
             data-desc="An Android learning app for preschool and kindergarten children (Pre-KG, LKG, UKG), built on the Cato Kids / Mother Goose Learning workbook curriculum. Combines 74 structured lessons across Letter Land (English), Number Land (Math), and Know My World (Environmental Studies) with nine interactive game engines — Trace, Count-and-Tap, Match Pairs, Quiz, and more. A Supabase backend handles accounts and role-based access for five distinct roles, with an offline-first design so lessons keep working without a connection."
             data-highlights='["74 lessons across 9 book/level combinations in Letter Land, Number Land & Know My World","9 custom game engines — Trace, Count-and-Tap, Match Pairs, Quiz & more","Five role-based interfaces: Student, Teacher, Parent, School Admin & Platform Admin","Offline-first architecture with local progress syncing","Supabase-backed auth & Row Level Security for role-based data access","205 bundled illustrations (Microsoft Fluent Emoji) sized for young readers","Explore mode lets kids try lessons before an account is created"]'>
             <div class="panel-corner tl" aria-hidden="true"></div>
@@ -448,7 +449,7 @@
               <span class="tech-pill">Android</span>
             </div>
             <div class="card-footer">
-              <span class="card-view">VIEW DETAILS →</span>
+              <span class="card-view">VIEW DETAILS &amp; DOWNLOAD →</span>
             </div>
           </article>
 
@@ -1004,8 +1005,12 @@
       </div>
       <div class="modal-actions" id="modal-actions">
         <a id="modal-live-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary modal-live-btn"
-          aria-label="Launch live demo in new tab">
+          aria-label="Launch live demo in new tab" style="display:none;">
           <span>LAUNCH LIVE APP</span> <span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a id="modal-download-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary modal-download-btn"
+          aria-label="Download the app" style="display:none;">
+          <span>DOWNLOAD APP</span> <span class="btn-arrow" aria-hidden="true">⬇</span>
         </a>
       </div>
     </div>

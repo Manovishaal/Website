@@ -135,7 +135,7 @@ A single button flips every color token via a `data-theme` attribute and CSS cus
 An optional audio layer (off by default) synthesizes short tones on the fly with the Web Audio API for hovers, clicks, modal open/close, and toasts — no audio files, just oscillators and gain envelopes.
 
 ### Titles Vault — Filterable Projects
-Eight project cards (Game & VR, Mobile, Web, Data & ML) can be filtered by category. Clicking a card opens a detail modal with the full tech stack, description, and a bulleted list of key systems; the Sitara Apt Portal card also links out to that project's live demo.
+Eight project cards (Game & VR, Mobile, Web, Data & ML) can be filtered by category. Clicking a card opens a detail modal with the full tech stack, description, and a bulleted list of key systems. A card can optionally surface an action button in its modal: the Sitara Apt Portal card links out to that project's live demo, and the Cato Kids card links to a downloadable Android APK release.
 
 ### Arsenal Matrix — Animated Skills
 Category-grouped skill bars animate to their target percentage the first time the section scrolls into view (via `IntersectionObserver`), backed by a scrolling tech-badge cloud with a randomized glow cycle.

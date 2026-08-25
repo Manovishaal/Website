@@ -408,6 +408,7 @@ const modalDesc = document.getElementById('modal-desc');
 const modalHighlightsList = document.getElementById('modal-highlights-list');
 const modalActions = document.getElementById('modal-actions');
 const modalLiveLink = document.getElementById('modal-live-link');
+const modalDownloadLink = document.getElementById('modal-download-link');
 
 function openModal(card) {
   modalTag.textContent = card.dataset.tag || '';
@@ -425,11 +426,25 @@ function openModal(card) {
   } catch (_) {}
 
   // Set live project link if available
-  if (card.dataset.link && modalLiveLink && modalActions) {
+  const hasLiveLink = !!(card.dataset.link && modalLiveLink);
+  if (hasLiveLink) {
     modalLiveLink.href = card.dataset.link;
-    modalActions.style.display = 'flex';
-  } else if (modalActions) {
-    modalActions.style.display = 'none';
+    modalLiveLink.style.display = 'inline-flex';
+  } else if (modalLiveLink) {
+    modalLiveLink.style.display = 'none';
+  }
+
+  // Set download link if available (e.g. an Android APK release)
+  const hasDownloadLink = !!(card.dataset.download && modalDownloadLink);
+  if (hasDownloadLink) {
+    modalDownloadLink.href = card.dataset.download;
+    modalDownloadLink.style.display = 'inline-flex';
+  } else if (modalDownloadLink) {
+    modalDownloadLink.style.display = 'none';
+  }
+
+  if (modalActions) {
+    modalActions.style.display = (hasLiveLink || hasDownloadLink) ? 'flex' : 'none';
   }
 
   modal.showModal();

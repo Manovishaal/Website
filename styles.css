@@ -1701,8 +1701,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-top: 1px solid var(--border-base);
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
 }
-.modal-live-btn {
+.modal-live-btn,
+.modal-download-btn {
   gap: 8px;
   padding: 12px 26px;
   font-size: 11px;
