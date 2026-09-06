@@ -5,8 +5,14 @@
 
 'use strict';
 
+/* Visitors who have asked their OS to reduce motion get a still page.
+   Guards the boot overlay, the particle loop, the badge flash and the
+   cursor glow — see the four REDUCE_MOTION checks below. */
+const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ---------- RETRO BOOT SEQUENCE ---------- */
 (function bootSequence() {
+  if (REDUCE_MOTION) return;
   const overlay = document.createElement('div');
   overlay.className = 'boot-overlay';
   const lines = [
@@ -134,6 +140,7 @@ function drawConnections() {
 function animateCanvas() {
   ctx.clearRect(0, 0, W, H);
   drawGrid();
+  if (REDUCE_MOTION) return;   // static grid, no particle loop
   particles.forEach(p => { p.update(); p.draw(); });
   drawConnections();
   requestAnimationFrame(animateCanvas);
@@ -536,42 +543,63 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 
 
 /* ---------- CONTACT FORM ---------- */
-const contactForm = document.getElementById('contact-form');
+const contactForm  = document.getElementById('contact-form');
 const formFeedback = document.getElementById('form-feedback');
-const formSubmit = document.getElementById('form-submit');
+const formSubmit   = document.getElementById('form-submit');
+
+/* Create a form at https://formspree.io and paste its endpoint here.
+   Until that happens the form does NOT pretend to send — it shows the
+   email address instead, which is honest and still gets the message
+   through. */
+const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const CONTACT_EMAIL = 'manovishaal@gmail.com';
 
 if (contactForm) {
-  contactForm.addEventListener('submit', e => {
+  const say = (msg, ok) => {
+    formFeedback.innerHTML = msg;
+    formFeedback.style.color = ok ? 'var(--accent-cyan)' : 'var(--accent-ember)';
+  };
+  const mailtoLine =
+    'Please email me directly at <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.';
+
+  contactForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const name = contactForm.querySelector('#name').value.trim();
-    const email = contactForm.querySelector('#email').value.trim();
+
+    const name    = contactForm.querySelector('#name').value.trim();
+    const email   = contactForm.querySelector('#email').value.trim();
     const message = contactForm.querySelector('#message').value.trim();
+    const consentBox = contactForm.querySelector('#consent');
 
-    if (!name || !email || !message) {
-      formFeedback.textContent = '⚠ Please fill in all required fields.';
-      formFeedback.style.color = '#ff6b35';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      formFeedback.textContent = '⚠ Please enter a valid email address.';
-      formFeedback.style.color = '#ff6b35';
-      return;
+    if (!name || !email || !message) return say('\u26a0 Please fill in all required fields.', false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say('\u26a0 Please enter a valid email address.', false);
+    if (consentBox && !consentBox.checked) return say('\u26a0 Please tick the consent box so I can reply to you.', false);
+
+    if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
+      return say('\u26a0 This form isn\u2019t connected yet. ' + mailtoLine, false);
     }
 
-    // Simulate submission (replace with real backend/emailJS/formspree)
     formSubmit.disabled = true;
     formSubmit.textContent = 'TRANSMITTING...';
     formFeedback.textContent = '';
     playTone(330, 'sine', 0.1, 0.08);
 
-    setTimeout(() => {
-      formFeedback.textContent = '✓ TRANSMISSION RECEIVED — I will respond within 24 hours!';
-      formFeedback.style.color = '#00f0ff';
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      say('\u2713 MESSAGE SENT \u2014 I usually reply within a few days.', true);
+      contactForm.reset();
+      showToast('\u2713 Message sent');
+    } catch (err) {
+      say('\u26a0 Could not send. ' + mailtoLine, false);
+    } finally {
       formSubmit.textContent = 'SEND TRANSMISSION';
       formSubmit.disabled = false;
-      contactForm.reset();
-      showToast('✓ Message sent successfully!');
-    }, 1500);
+    }
   });
 }
 
@@ -607,7 +635,7 @@ function cycleBadgeGlow() {
     badge.style.background = '';
   }, 700);
 }
-setInterval(cycleBadgeGlow, 600);
+if (!REDUCE_MOTION) setInterval(cycleBadgeGlow, 600);
 
 
 /* ---------- CURSOR GLOW EFFECT ---------- */
@@ -621,11 +649,13 @@ cursorGlow.style.cssText = `
   transition: transform 0.1s linear;
   top: 0; left: 0;
 `;
-document.body.appendChild(cursorGlow);
-window.addEventListener('mousemove', e => {
-  cursorGlow.style.left = e.clientX + 'px';
-  cursorGlow.style.top = e.clientY + 'px';
-}, { passive: true });
+if (!REDUCE_MOTION) {
+  document.body.appendChild(cursorGlow);
+  window.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+  }, { passive: true });
+}
 
 
 /* ---------- INTERSECTION OBSERVER — SECTION FADE IN ---------- */

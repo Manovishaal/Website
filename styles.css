@@ -22,7 +22,7 @@
 
   --text-primary: #e8eaf0;
   --text-secondary: #8c93aa;
-  --text-muted: #4a5168;
+  --text-muted: #7c839f;
   --text-bright: #ffffff;
 
   --border-base: rgba(255, 255, 255, 0.06);
@@ -68,7 +68,7 @@
 
   --text-primary: #12141c;
   --text-secondary: #454a5e;
-  --text-muted: #8a8fa4;
+  --text-muted: #5a5f72;
   --text-bright: #050609;
 
   --border-base: rgba(0, 0, 0, 0.08);
@@ -2973,3 +2973,61 @@ body { animation: crt-flicker 8s infinite; }
   color: #b45309;
 }
 
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+/* Skip link — first tab stop, jumps past the nav to <main id="main">. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--accent-cyan);
+  color: #05060b;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+/* .form-input, .game-modal and .callsign-input:focus each set outline:none,
+   which left keyboard users with no visible focus on those controls. */
+:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
+.form-input:focus-visible,
+.callsign-input:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+
+/* Consent checkbox on the contact form. */
+.form-consent { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 22px; }
+.form-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: 2px;
+  accent-color: var(--accent-cyan);
+  cursor: pointer;
+}
+.form-consent label {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.form-consent a { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Honour the OS "reduce motion" setting. The JS side is guarded by
+   REDUCE_MOTION in main.js. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .boot-overlay { display: none !important; }
+  .section { opacity: 1 !important; transform: none !important; }
+  .scanlines, .crt-vignette { display: none !important; }
+}
